@@ -74,9 +74,9 @@ def doChanges(foundFiles, search, replace):
         if response == "L":
             for file in newFiles:
                 print(file)
-        if response == "N":
+        elif response == "N":
             sys.exit()
-        if response == "Y":
+        elif response == "Y":
             for file in newFiles:
                 print("Writing changes to %s..." % file)
                 with open(file,'w') as newFile:
