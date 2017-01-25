@@ -2,7 +2,6 @@ import os
 import sys
 from fnmatch import fnmatch
 
-
 def getFiles():
     branchPath = input("Enter path to be searched: ")
     pattern = input("Enter file name pattern to match: ")
@@ -16,8 +15,6 @@ def getFiles():
             if fnmatch(name,pattern):
                 foundFiles[found] = str(path + "/" +name)
                 found = found + 1
-    
-    
     while(True):
         response = input("Checked %s files and found %s matches, continue? ([Y]es, [N]o, [L]ist files)\r\n" % (checked,len(foundFiles)))
         if response == "Y":
@@ -27,8 +24,7 @@ def getFiles():
                 print(foundFiles[file])
         elif response == "N":
             sys.exit()
-        else:
-            response = input("Checked %s files and found %s matches, continue? ([Y]es, [N]o, [L]ist files)\r\n" % (checked,len(foundFiles)))
+
 
 def getInputs():
     search = []
@@ -41,6 +37,8 @@ def getInputs():
         tmpReplace = input("Enter string to replace it with... (Leave blank to delete): \r\n")
         search.append(tmpSearch)
         replace.append(tmpReplace)
+
+
 def doChanges(foundFiles, search, replace):
     hits = {}
     newFiles = {}
@@ -53,7 +51,7 @@ def doChanges(foundFiles, search, replace):
     for foundFile in foundFiles:
         localFileData = ""
         makeNewFile = 0
-        
+
         with open(foundFiles[foundFile],'r') as localFile:
             #print("Reading file %s..." % (foundFiles[foundFile]))
             localFileData = localFile.read()
@@ -65,10 +63,8 @@ def doChanges(foundFiles, search, replace):
                     localFileData = localFileData.replace(s,r)
                     makeNewFile = 1
                     #print("Found match on [%s], replacing with [%s]" % (s,r))
-    
             if makeNewFile == 1:
                 newFiles[foundFiles[foundFile]] = localFileData
-    
     totalhits = 0
     for s,r,h in zip(search,replace,hits):
         print("    %s hits on '%s' (replacing with '%s')" % (hits[h],s,r))
