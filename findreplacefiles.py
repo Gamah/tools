@@ -16,7 +16,7 @@ def getFiles():
                 foundFiles[found] = str(path + "/" +name)
                 found = found + 1
     while(True):
-        response = input("Checked %s files and found %s matches, continue? ([Y]es, [N]o, [L]ist files)\r\n" % (checked,len(foundFiles)))
+        response = input("Checked %s files and found %s matches, continue? ([Y]es, [N]o, [L]ist files)\r\n" % (checked,len(foundFiles))).upper()
         if response == "Y":
             return foundFiles
         elif response == "L":
@@ -70,7 +70,7 @@ def doChanges(foundFiles, search, replace):
         print("    %s hits on '%s' (replacing with '%s')" % (hits[h],s,r))
         totalhits = totalhits + hits[h]
     while(True):
-        response = input("Found %s total hits in %s file(s), write changes? ([Y]es, [N]o, [L]ist Changed Files)\r\n" % (totalhits,len(newFiles)))
+        response = input("Found %s total hits in %s file(s), write changes? ([Y]es, [N]o, [L]ist Changed Files)\r\n" % (totalhits,len(newFiles))).upper()
         if response == "L":
             for file in newFiles:
                 print(file)
